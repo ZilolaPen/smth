@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#fff0f4">
+<title>Для Париши — с любовью</title>
+<style>
+:root{--pink:#e8a9ba;--rose:#b96e83;--ink:#604a52;--cream:#fffaf8}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:linear-gradient(145deg,#fff8f8,#fff0f4 55%,#fffaf4);color:var(--ink);font-family:Georgia,"Times New Roman",serif}
+button,input{font:inherit}.gate{min-height:100svh;display:grid;place-items:center;padding:24px;background:radial-gradient(circle at 50% 30%,#fff 0,#fff1f5 55%,#f8dfe7 100%)}
+.gate-card{width:min(440px,100%);padding:42px 28px;text-align:center;background:#ffffffc9;border:1px solid #f3d5df;border-radius:28px;box-shadow:0 18px 55px #a85e7620}
+.eyebrow{letter-spacing:.22em;text-transform:uppercase;font:11px Arial,sans-serif;color:#b77b8c}.gate h1{font-size:clamp(34px,8vw,52px);font-weight:normal;margin:14px 0}.gate p{line-height:1.7}.gate input{width:100%;padding:15px;border:1px solid #e9c4d0;border-radius:14px;background:#fff;text-align:center;outline:none}.btn{border:0;border-radius:999px;padding:14px 24px;background:#bd7b8f;color:white;cursor:pointer;box-shadow:0 8px 20px #bd7b8f30;transition:.25s}.btn:hover{transform:translateY(-2px);background:#a9657b}.gate .btn{width:100%;margin-top:12px}.error{min-height:22px;color:#b14d68;font:13px Arial}
+#site{display:none}.hero{min-height:88svh;display:grid;place-items:center;text-align:center;padding:70px 22px;position:relative;overflow:hidden}.hero:before,.hero:after{content:"✿";position:absolute;color:#e8b4c3;font-size:90px;opacity:.3}.hero:before{top:8%;left:8%;transform:rotate(-20deg)}.hero:after{bottom:8%;right:8%;transform:rotate(20deg)}
+.hero-inner{max-width:760px}.hero h1{font-size:clamp(46px,10vw,88px);line-height:1.02;font-weight:normal;margin:18px 0;color:#9c6073}.hero .lead{font-size:clamp(17px,3vw,22px);line-height:1.8;max-width:600px;margin:20px auto 28px}.small{font:12px Arial,sans-serif;letter-spacing:.18em;color:#b77b8c;text-transform:uppercase}
+section{padding:65px 20px;max-width:1080px;margin:auto}.section-title{text-align:center;font-size:clamp(30px,6vw,44px);font-weight:normal;color:#9c6073;margin:0 0 12px}.sub{text-align:center;line-height:1.7;color:#987783;margin:0 auto 34px;max-width:620px}
+.gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.photo{margin:0;padding:9px 9px 18px;background:#fff;border-radius:8px;box-shadow:0 12px 32px #8f58601c;transform:rotate(var(--tilt));transition:.3s}.photo:hover{transform:rotate(0) translateY(-5px)}.photo img{width:100%;height:clamp(190px,36vw,340px);object-fit:cover;display:block;border-radius:4px}.photo figcaption{text-align:center;padding:13px 4px 0;font-size:15px;color:#9d7180}
+.note{background:#fff9f8;border:1px solid #f2dce2;border-radius:24px;padding:32px;max-width:760px;margin:26px auto;line-height:1.9;font-size:18px;box-shadow:0 12px 35px #a85e7610}.reasons{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.reason{background:#fff9f8;border:1px solid #f3dfe5;border-radius:20px;padding:22px;text-align:center;line-height:1.65}.reason b{display:block;color:#a9687e;font-size:20px;font-weight:normal;margin-bottom:8px}
+.letter{white-space:pre-line}.surprise{text-align:center;padding:70px 20px 100px}.surprise .btn{font-size:17px;padding:17px 32px}.hidden-message{display:none;margin:28px auto 0;max-width:650px;font-size:clamp(22px,5vw,34px);line-height:1.5;color:#a45f75;animation:pop .8s ease both}
+footer{text-align:center;padding:28px;color:#b78b98;font-size:13px}.music{position:fixed;right:16px;bottom:16px;z-index:5;border:1px solid #e8c6d0;background:#fffdfb;color:#9c6073;border-radius:999px;padding:12px 16px;box-shadow:0 8px 24px #7d43521c;cursor:pointer}
+.heart{position:fixed;bottom:-30px;pointer-events:none;color:#d98ca4;animation:float 7s linear forwards;z-index:4}@keyframes float{to{transform:translateY(-110vh) rotate(30deg);opacity:0}}@keyframes pop{from{opacity:0;transform:scale(.88)}to{opacity:1;transform:scale(1)}}
+@media(max-width:650px){.gallery{grid-template-columns:1fr}.photo img{height:auto;max-height:520px}.reasons{grid-template-columns:1fr}.note{padding:24px;font-size:17px}.hero{min-height:82svh}}
+</style>
+</head>
+<body>
+<div class="gate" id="gate">
+  <div class="gate-card">
+    <div class="eyebrow">маленький сюрприз для тебя</div>
+    <h1>Привет, Париша ♡</h1>
+    <p>Этот маленький уголок воспоминаний создан специально для тебя.<br>Введи наш секретный пароль, чтобы открыть его.</p>
+    <form id="passForm"><input id="pass" type="password" placeholder="Наш секретный пароль" autocomplete="off" aria-label="Пароль"><button class="btn" type="submit">Открыть подарок ♡</button></form>
+    <div class="error" id="error" aria-live="polite"></div>
+    <div class="small">сделано с теплом и любовью</div>
+  </div>
+</div>
+<main id="site">
+  <button class="music" id="musicBtn">♫ Включить музыку</button>
+  <audio id="music" loop src="music/gentle-piano.wav"></audio>
+  <header class="hero"><div class="hero-inner">
+    <div class="small">для моей дорогой Париши</div>
+    <h1>С днём рождения!</h1>
+    <p class="lead">Пусть в твоей жизни будет столько же света, сколько ты приносишь в жизнь людей рядом с собой. Сегодня — день, посвящённый тебе. ♡</p>
+    <a class="btn" href="#memories" style="display:inline-block;text-decoration:none">Наши воспоминания ↓</a>
+  </div></header>
+  <section id="memories"><h2 class="section-title">Маленькая история нас</h2><p class="sub">Некоторые моменты хочется сохранить не только в галерее телефона, но и в сердце.</p>
+    <div class="gallery">
+      <figure class="photo" style="--tilt:-1deg"><img src="images/memory-1.jpg" alt="Совместное фото"><figcaption>Моменты, которые хочется пересматривать ♡</figcaption></figure>
+      <figure class="photo" style="--tilt:1.2deg"><img src="images/memory-2.jpg" alt="Улыбка и хорошее настроение"><figcaption>Твоя улыбка — отдельный вид счастья</figcaption></figure>
+      <figure class="photo" style="--tilt:1deg"><img src="images/memory-3.jpg" alt="Друзья вместе"><figcaption>И сколько всего ещё впереди</figcaption></figure>
+      <figure class="photo" style="--tilt:-1.2deg"><img src="images/memory-4.jpg" alt="Совместное селфи"><figcaption>Обычные дни становятся особенными</figcaption></figure>
+      <figure class="photo" style="--tilt:.5deg"><img src="images/memory-5.jpg" alt="Дружеское фото"><figcaption>Ещё одна страничка нашей истории</figcaption></figure>
+    </div>
+  </section>
+  <section><h2 class="section-title">За что я тебя ценю</h2><p class="sub">Не обязательно ждать особенного дня, чтобы сказать важные вещи.</p>
+    <div class="reasons">
+      <div class="reason"><b>Твоё тепло</b>Рядом с тобой даже обычный день может стать светлее.</div>
+      <div class="reason"><b>Твоя искренность</b>Ценно иметь человека, с которым можно быть собой.</div>
+      <div class="reason"><b>Наши моменты</b>Смех, разговоры и маленькие приключения — всё это дорого мне.</div>
+    </div>
+  </section>
+  <section><h2 class="section-title">Несколько слов от сердца</h2>
+    <div class="note letter">Дорогая Париша!
+
+С днём рождения, моя хорошая! Я хочу пожелать тебе огромного счастья, душевного спокойствия, крепкого здоровья и исполнения самых заветных желаний.
+
+Пусть рядом всегда будут люди, которые ценят тебя, поддерживают и радуются твоим успехам. Желаю тебе смело идти к своим мечтам, чаще улыбаться, открывать для себя красивые места и собирать как можно больше счастливых воспоминаний.
+
+Спасибо за нашу дружбу и за моменты, которые теперь стали частью моей истории. Надеюсь, впереди у нас ещё очень много поводов смеяться, фотографироваться и говорить: «Помнишь, как это было?»
+
+Обнимаю крепко. Будь счастлива! ♡</div>
+  </section>
+  <div class="surprise"><div class="small">и это ещё не всё...</div><h2 class="section-title">У меня есть кое-что для тебя</h2><p class="sub">Нажми на кнопку — и откроется последнее послание.</p>
+    <button class="btn" id="giftBtn">Открыть сюрприз ♡</button>
+    <div class="hidden-message" id="finalMessage">Пусть каждый новый год твоей жизни будет красивее предыдущего. Я очень рада, что ты есть в моей жизни. С днём рождения! 💗</div>
+  </div>
+  <footer>Создано с любовью, специально для Париши · ♡</footer>
+</main>
+<script>
+/* Это лёгкий экран-сюрприз, а не настоящая защита файлов: содержимое статического сайта можно открыть через исходный код. */
+const PASSWORD = "PARISHA";
+const gate=document.getElementById('gate'), site=document.getElementById('site');
+document.getElementById('passForm').addEventListener('submit',e=>{e.preventDefault();if(document.getElementById('pass').value.trim().toUpperCase()===PASSWORD){gate.style.display='none';site.style.display='block';window.scrollTo(0,0);hearts(12);}else{document.getElementById('error').textContent='Кажется, пароль не подошёл. Попробуй ещё раз ♡';}});
+const audio=document.getElementById('music'), musicBtn=document.getElementById('musicBtn');
+musicBtn.addEventListener('click',async()=>{if(audio.paused){try{await audio.play();musicBtn.textContent='♫ Выключить музыку';}catch(e){musicBtn.textContent='Музыка недоступна';}}else{audio.pause();musicBtn.textContent='♫ Включить музыку';}});
+function hearts(count=8){for(let i=0;i<count;i++){const h=document.createElement('span');h.className='heart';h.textContent=['♡','♥','✿'][Math.floor(Math.random()*3)];h.style.left=(Math.random()*100)+'vw';h.style.fontSize=(16+Math.random()*22)+'px';h.style.animationDuration=(5+Math.random()*4)+'s';document.body.appendChild(h);setTimeout(()=>h.remove(),9500);}}
+setInterval(()=>{if(site.style.display==='block')hearts(1)},2200);
+document.getElementById('giftBtn').addEventListener('click',()=>{document.getElementById('finalMessage').style.display='block';hearts(30);document.getElementById('giftBtn').textContent='С любовью ♡';});
+</script>
+</body></html>
